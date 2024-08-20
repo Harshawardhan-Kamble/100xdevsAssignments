@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.todo-list{
+    display: flex;
+    width: 100vw;
+    gap:10px;
+    flex-wrap: wrap;
+    
+}
+.todo{
+    background-color: green;
+    height:100px;
+    width:200px;
+    justify-content: center;
+    align-items: center;
+}
+.todo:nth-child(odd){
+    background-color: green
+}
+.todo:nth-child(even){
+    background-color: orange
+}
