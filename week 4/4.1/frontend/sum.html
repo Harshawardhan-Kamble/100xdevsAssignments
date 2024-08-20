@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum</title>
+<script async="defer" src="script.js"></script>
+</head>
+<body>
+    <div>
+    <label for="number1">Number 1</label>
+    <input oninput="debouncedCalculateSum()" id="number1" type="text" placeholder="Enter a number"/>
+</div>
+<div>
+    <label for="number2">Number 2</label>
+        <input oninput="debouncedCalculateSum()" id="number2" type="text" placeholder="Enter a number"/>
+    </div>
+    <!-- <button onclick="calculateSum()" id="Button">Calculate sum</button> -->
+    <div id="calculate"></div>
+</body>
+
+</html>
