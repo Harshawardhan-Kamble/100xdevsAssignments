@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+
 import axios from "axios"
 
 function App() {
   const [selectedId,setSelectedId]=useState(1)
+  const [counter,setCounter]=useState(0)
+  const [sum,setSum]=useState(0)
+  const calculate=(e)=>{
+    const value=Number(e.target.value)
+    setSum(value*(value+1)/2)
+  }
   // const [todos,setTodos]=useState([])
   // useEffect(()=>{
   //   fetch("https://sum-server.100xdevs.com/todos")
@@ -12,6 +18,9 @@ function App() {
   //  },[])
   return (
     <> {/* {todos.map((todo,index) =><Todo key={index} title={todo.title} description={todo.description}/>)} */}
+    <input type='text'onChange={calculate} ></input>
+    <h3>Sum is {sum}</h3>
+    <button onClick={()=>setCounter(counter+1)}>Counter-{counter}</button>
 <button onClick={()=>setSelectedId(1)}>1</button>
 <button onClick={()=>setSelectedId(2)}>2</button>
 <button onClick={()=>setSelectedId(3)}>3</button>
