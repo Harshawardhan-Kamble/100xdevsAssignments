@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import axios from "axios"
 
 function App() {
   const [selectedId,setSelectedId]=useState(1)
   const [counter,setCounter]=useState(0)
-  const [sum,setSum]=useState(0)
-  const calculate=(e)=>{
-    const value=Number(e.target.value)
-    setSum(value*(value+1)/2)
+  const [inputValue,setInputValue]=useState(0)
+  const memoisedFunction=useMemo(()=>{
+    let count=0;
+  for(let i=0;i<=inputValue;i++){
+    count=count+i
+  }
+  return count;
+  },[inputValue])
+  
+  const handleChange=(e)=>{
+    setInputValue(e.target.value)
   }
   // const [todos,setTodos]=useState([])
   // useEffect(()=>{
@@ -18,8 +25,8 @@ function App() {
   //  },[])
   return (
     <> {/* {todos.map((todo,index) =><Todo key={index} title={todo.title} description={todo.description}/>)} */}
-    <input type='text'onChange={calculate} ></input>
-    <h3>Sum is {sum}</h3>
+    <input type='text'onChange={handleChange} ></input>
+    <h3>Sum is {memoisedFunction}</h3>
     <button onClick={()=>setCounter(counter+1)}>Counter-{counter}</button>
 <button onClick={()=>setSelectedId(1)}>1</button>
 <button onClick={()=>setSelectedId(2)}>2</button>
