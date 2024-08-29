@@ -1,14 +1,12 @@
-import { useState } from 'react'
-import { CountContext } from './context'
-import { useContext } from 'react'
-
+import {RecoilRoot,useRecoilValue, useSetRecoilState,} from "recoil"
+import { countAtom } from "./store/atoms/count"
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <CountContext.Provider value={{count,setCount}}>
+  <RecoilRoot>
     <Count></Count>
-    </CountContext.Provider>
+    </RecoilRoot>
   )
 }
 /* Using Context API we haved avoided prop drilling but this Count is rerendering if a button is clicked .
@@ -26,15 +24,17 @@ function Count(){
   )
 }
 function CountRender(){
-  const {count}=useContext(CountContext)
+const count=useRecoilValue(countAtom)
   return <div>{count}</div>
 }
 function Buttons(){
-  const {count,setCount}=useContext(CountContext)
+  // const [count,setCount]=useRecoilState(countAtom)
+  const setCount=useSetRecoilState(countAtom)
+  console.log("Button Re-rendered")
    return (
     <>
-    <button onClick={()=>{setCount(count +1)}}>Increment</button>
-    <button onClick={()=>{setCount(count -1)}}>Decrement</button>
+    <button onClick={()=>{setCount(prev=>prev+1)}}>Increment</button>
+    <button onClick={()=>{setCount(prev=>prev-1)}}>Decrement</button>
     </>
   )
 }
