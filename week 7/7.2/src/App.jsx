@@ -1,5 +1,6 @@
 import {RecoilRoot,useRecoilValue, useSetRecoilState,} from "recoil"
 import { countAtom } from "./store/atoms/count"
+import { useMemo } from "react"
 function App() {
 
 
@@ -12,7 +13,7 @@ function App() {
 /* Using Context API we haved avoided prop drilling but this Count is rerendering if a button is clicked .
   Note Count is not using any state  but since the parent App renders Count also has to render also we have wrapped th
   Count inside CountContextProvider therefore it renders
-  To avoid this we can wrap Count  using react.memo to avoid rerendering or we can use recoil state management library
+  To avoid this we can wrap Count  using react.\\\\\\\\\\\\\\\\\\\\\\\\\\\memo to avoid rerendering or we can use recoil state management library
 */
 function Count(){
   console.log("Count render")
@@ -20,9 +21,22 @@ function Count(){
     <>
     <CountRender></CountRender>
     <Buttons></Buttons>
+    <IsEven></IsEven>
     </>
   )
 }
+
+function IsEven() {
+  const count = useRecoilValue(countAtom);
+
+  const isEvenText = useMemo(() => {
+    console.log("is even render");
+    return count > 0 && count % 2 === 0 ? "It is even" : null;
+  }, [count]);
+
+  return <div>{isEvenText}</div>;
+} 
+
 function CountRender(){
 const count=useRecoilValue(countAtom)
   return <div>{count}</div>
