@@ -1,20 +1,32 @@
-import { useState } from 'react'
-function App() {
-  const [home, sethome] = useState(0)
-  const [network, setNetwork] = useState(0)
-  const [jobs, setJobs] = useState(0)
-  const [message, setMessage] = useState(0)
-  const [notification, setNotification] = useState(0)
-  const [profile, setProfile] = useState(0)
 
+import { RecoilRoot,useRecoilValue } from 'recoil'
+import { jobsCount, messageCount, networkCount, notificationCount, totalSelector } from './store/atom'
+import { useMemo } from 'react'
+function App() {
+  return (
+    <RecoilRoot>
+      <Main></Main>
+    </RecoilRoot>
+  )
+}
+function Main(){
+const network=useRecoilValue(networkCount)
+const notification=useRecoilValue(notificationCount)
+const message=useRecoilValue(messageCount)
+const jobs=useRecoilValue(jobsCount)
+// We can achieve the same using usememo instead of selctors. Here's how
+// const total=useMemo(()=>{
+//   return network+notification+message+jobs
+// },[network,notification,message,jobs])
+const total=useRecoilValue(totalSelector)
   return (
     <>
       <button>Home</button>
-      <button onClick={()=>{setNetwork(network+1)}}>Network{network>10?"10+":network}</button>
-      <button onClick={()=>{setJobs(jobs+1)}}>Jobs{jobs>3?"3+":jobs}</button>
-      <button onClick={()=>{setMessage(message+1)}}>Messages{message>5?"5+":message}</button>
-      <button onClick={()=>{setNotification(notification+1)}}>Notifications{notification>10?"10+":notification}</button>
-      <button>Me</button>
+      <button>Network{network>10?"10+":network}</button>
+      <button >Jobs{jobs>3?"3+":jobs}</button>
+      <button >Messages{message>5?"5+":message}</button>
+      <button>Notifications{notification>10?"10+":notification}</button>
+      <button>Me{total}</button>
     </>
   )
 }
