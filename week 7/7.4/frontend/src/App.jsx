@@ -1,31 +1,23 @@
 
-import { RecoilRoot,useRecoilValue } from 'recoil'
-import { jobsCount, messageCount, networkCount, notificationCount, totalSelector } from './store/atom'
-import { useState,useEffect } from 'react'
+import { RecoilRoot,useRecoilState,useRecoilValue } from 'recoil'
+import {notificationAtom,  totalSelector } from './store/atom'
+import {useEffect } from 'react'
 import axios from 'axios';
 function App() {
   return (
-    // <RecoilRoot>
+    <RecoilRoot>
       <Main></Main>
-    // </RecoilRoot>
+    </RecoilRoot>
   )
 }
 function Main(){
-// const network=useRecoilValue(networkCount)
-// const notification=useRecoilValue(notificationCount)
-// const message=useRecoilValue(messageCount)
-// const jobs=useRecoilValue(jobsCount)
-// We can achieve the same using usememo instead of selctors. Here's how
-// const total=useMemo(()=>{
-//   return network+notification+message+jobs
-// },[network,notification,message,jobs])
-// const total=useRecoilValue(totalSelector)
-const [count,setCount]=useState({})
+const [allNotifications,setAllNotifications]=useRecoilState(notificationAtom)
+const {messaging,jobs,network,notification}=allNotifications
+const total=useRecoilValue(totalSelector)
 useEffect(()=>{
   axios.get("http://localhost:3000/")
   .then((response)=>{
-    setCount(response.data)
-    console.log(response.data)
+    setAllNotifications(response.data)
   })
   .catch((error)=>{
     console.log(error);
@@ -35,11 +27,11 @@ useEffect(()=>{
   return (
     <>
       <button>Home</button>
-      <button>Network{count.network}</button>
-      <button >Jobs{count.jobs}</button>
-      <button >Messages{count.messaging}</button>
-      <button>Notifications{count.network}</button>
-      {/* <button>Me{total}</button> */}
+      <button>Network{network>10?"10+":network}</button>
+      <button >Jobs{jobs>10?"10+":jobs}</button>
+      <button >Messages{messaging>10?"10+":messaging}</button>
+      <button>Notifications{notification>10?"10+":notification}</button>
+      <button>Me{total}</button>
     </>
   )
 }
