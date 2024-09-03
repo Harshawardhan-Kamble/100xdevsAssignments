@@ -12,7 +12,7 @@ function App() {
 /* Using Context API we haved avoided prop drilling but this Count is rerendering if a button is clicked .
   Note Count is not using any state  but since the parent App renders Count also has to render also we have wrapped th
   Count inside CountContextProvider therefore it renders
-  To avoid this we can wrap Count  using react.\\\\\\\\\\\\\\\\\\\\\\\\\\\memo to avoid rerendering or we can use recoil state management library
+  To avoid this we can wrap Count  using react.memo to avoid rerendering or we can use recoil state management library
 */
 function Count(){
   console.log("Count render")
