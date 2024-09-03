@@ -5,6 +5,7 @@ export const notificationAtom = atom({
   key: "notificationAtom",
   default: selector(
     {
+      key:"notificationAtomSelector",
       get:(async () => {
     try {
       const response = await axios.get("http://localhost:3000/");
