@@ -1,8 +1,7 @@
 
-import { RecoilRoot,useRecoilState,useRecoilValue } from 'recoil'
+import { RecoilRoot,useRecoilValue } from 'recoil'
 import {notificationAtom,  totalSelector } from './store/atom'
-import {useEffect } from 'react'
-import axios from 'axios';
+
 function App() {
   return (
     <RecoilRoot>
@@ -11,18 +10,10 @@ function App() {
   )
 }
 function Main(){
-const [allNotifications,setAllNotifications]=useRecoilState(notificationAtom)
+const allNotifications=useRecoilValue(notificationAtom)
 const {messaging,jobs,network,notification}=allNotifications
 const total=useRecoilValue(totalSelector)
-useEffect(()=>{
-  axios.get("http://localhost:3000/")
-  .then((response)=>{
-    setAllNotifications(response.data)
-  })
-  .catch((error)=>{
-    console.log(error);
-  })
-},[])
+
 	
   return (
     <>
