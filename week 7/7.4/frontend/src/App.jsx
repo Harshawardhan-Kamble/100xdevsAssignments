@@ -3,12 +3,14 @@ import { RecoilRoot,useRecoilValue } from 'recoil'
 import {  notificationSelector,  totalSelector } from './store/atom'
 
 function App() {
+  
   return (
     <RecoilRoot>
       <Main></Main>
     </RecoilRoot>
   )
 }
+
 function Main(){
 const allNotifications=useRecoilValue(notificationSelector)
 const {messaging,jobs,network,notification}=allNotifications
