@@ -5,7 +5,7 @@ import { RiMessage2Line } from "react-icons/ri";
 
 const Header = () => {
   return (
-    <div className="fixed z-50 w-11/12 ml-60 ">
+    <div className="fixed z-30 w-11/12 ml-60 bg-white">
       <div className="flex justify-between   h-20 p-4 border-b-2 ">
         <div className="flex ">
           <span className="text-xl  ">Payouts</span>

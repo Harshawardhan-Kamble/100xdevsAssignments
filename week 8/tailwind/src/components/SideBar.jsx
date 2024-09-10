@@ -32,7 +32,7 @@ const buttonData = [
           <FaAngleDown />
         </div>
       </div>
-      <div className="gap-3 flex flex-col items-start ">
+      <div className="gap-2.5 flex flex-col items-start ">
       {buttonData.map((button, index) => (
           <div key={index} className="flex items-center gap-2 ml-4  p-1 pl-2  w-48 text-base cursor-pointer rounded-sm hover:bg-gray-500">
             {button.icon}
@@ -46,6 +46,7 @@ const buttonData = [
           <p className="text-lg font-bold">987.50</p>
           </div>
         </div>
+          <p className=" ml-2 p-2 text-md   " >Made with &#10084; <a className="underline" href="https://x.com/k_harsh08" target="_blank">Harshwardhan</a></p>
       </div>
     </div>
     </div>

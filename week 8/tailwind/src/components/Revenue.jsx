@@ -10,11 +10,11 @@ const Revenue = ({ data }) => {
         {
             data.map((individual,index) => {
                 return (
-                    <div key={index} className="shadow-md m-6 h-32 p-4  w-80">
-                        <p>{individual.title}</p>
+                    <div key={index} className={`shadow-md m-6 h-32 p-4 rounded-md  w-80 ${individual.title==="Next Payout"?"bg-blue-900 text-white":"bg-white"}  `} >
+                        <p >{individual.title}</p>
                         <div className="mt-8 flex justify-between">
                             <div className="font-bold text-2xl ">{individual?.payment}</div>
-                            <div className="ml-4 underline text-blue-700">{individual?.orders}</div>
+                            <div className={`ml-4 underline cursor-pointer  ${individual?.orders==="23 Orders"?"text-white":"text-blue-900"}  `}>{individual?.orders}</div>
                         </div>
                     </div>
                

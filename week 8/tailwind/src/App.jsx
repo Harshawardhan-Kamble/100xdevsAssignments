@@ -1,3 +1,4 @@
+
 import Header from "./components/Header";
 import Revenue from "./components/Revenue";
 import SideBar from "./components/SideBar";
@@ -24,10 +25,8 @@ function App() {
     <div className="flex">
       <SideBar></SideBar>
       <Header></Header>
-    </div>
-    
-        <Revenue data={data}></Revenue>
-    
+    </div>  
+    <Revenue data={data}></Revenue>
     </>
   );
 }
