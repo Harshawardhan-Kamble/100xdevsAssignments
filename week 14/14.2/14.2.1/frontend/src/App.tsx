@@ -26,7 +26,6 @@ const [loading,setLoading]=useState(true)
     <div>
       <p>{userData?.username}</p>
       <p>{userData?.email}</p>
-     
     </div>
   )
 }
